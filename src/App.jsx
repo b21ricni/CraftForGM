@@ -16,6 +16,11 @@ export default function App(){
         { id: crypto.randomUUID(), name: newCharacterName, race: newCharacterRace, personality: newCharacterPersonality, marked: false },
       ]
     })
+
+    setNewCharacterName("")
+    setNewCharacterRace("")
+    setNewCharacterPersonality("")
+    
   }
 
   return (
@@ -58,7 +63,7 @@ export default function App(){
     <ul className="list">
       {character.map(character => {
         return (
-          <li>
+          <li key={character.id}>
             <label>
               <input type="checkbox" checked={character.marked}/>
               {character.name}
