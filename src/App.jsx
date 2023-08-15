@@ -13,7 +13,7 @@ export default function App(){
     setCharacter((currentCharacter) => {
       return [
         ...currentCharacter,
-        { id: crypto.randomUUID(), name: newCharacterName, race: newCharacterRace, personality: newCharacterPersonality, marked: false },
+        { id: crypto.randomUUID(), name: newCharacterName, race: newCharacterRace, personality: newCharacterPersonality, selected: false },
       ]
     })
 
@@ -21,6 +21,24 @@ export default function App(){
     setNewCharacterRace("")
     setNewCharacterPersonality("")
     
+  }
+
+  function toggleCharacter(id, selected){
+    setCharacter(currentCharacter => {
+      return currentCharacter.map(character => {
+        if (character.id === id){
+          return {...character, selected}
+        }
+
+        return character
+      })
+    })
+  }
+
+  function deleteCharacter(id){
+    setCharacter(currentCharacter => {
+      return currentCharacter.filter(character => character.id !== id)
+    })
   }
 
   return (
@@ -61,16 +79,17 @@ export default function App(){
 
     <h1 className="header">Characters</h1>
     <ul className="list">
+      {character.length === 0 && "No created characters"}
       {character.map(character => {
         return (
           <li key={character.id}>
             <label>
-              <input type="checkbox" checked={character.marked}/>
+              <input onChange={e => toggleCharacter(character.id, e.target.selected)} type="checkbox" checked={character.selected}/>
               {character.name}
               {character.race}
               {character.personality}
             </label>
-            <button className="btn btn-delete-character">X</button>
+            <button onClick={() => deleteCharacter(character.id)} className="btn btn-delete-character">X</button>
           </li>
         )
       })}
