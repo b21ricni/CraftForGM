@@ -1,0 +1,8 @@
+- [] Change Race to dropdown
+- [] Create more potential qualites for character, exempel: Home Town, Work, size, special qualities, goal and so on
+- [] CSS!
+- [] break app into components
+- [] should it be SPA or MPA
+- [] Create Database
+- [] Create Log in
+- [] Logged in user can add more races to the list
