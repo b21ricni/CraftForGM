@@ -1,11 +1,13 @@
 import { useState } from "react"
 import "./styles.css"
+import * as races from "./race.JSON"
 
 export default function App(){
   const [character, setCharacter] = useState([])
   const [newCharacterName, setNewCharacterName] = useState("")
   const [newCharacterRace, setNewCharacterRace] = useState("")
   const [newCharacterPersonality, setNewCharacterPersonality] = useState("")
+  const [newTest, setNewTest] = useState("")
 
   function handleSubmit(e){
     e.preventDefault()
@@ -44,6 +46,22 @@ export default function App(){
   return (
   <>
     <form onSubmit={handleSubmit} className="new-character-form">
+      <div className="from-row">
+        <label htmlFor="">Test dropdown</label>
+        <input 
+          value={newTest}
+          onChange={e => setNewTest(e.target.value)}
+          type="select"
+          id="test-input"
+        >
+          {races.map((race, index) => {
+            <option key={index} value={race.id}>
+              {race.name}
+            </option>
+          })}
+        </input>
+      </div>
+
       <div className="form-row">
         <label htmlFor="">Name</label>
         <input 
