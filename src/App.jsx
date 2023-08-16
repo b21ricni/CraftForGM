@@ -1,6 +1,6 @@
 import { useState } from "react"
 import "./styles.css"
-import * as races from "./race.JSON"
+import races from "./race.JSON"
 
 export default function App(){
   const [character, setCharacter] = useState([])
